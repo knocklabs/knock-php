@@ -1,0 +1,18 @@
+{
+  "__typename": "MessageContent",
+  "id": "264os2yt574e1T3jblzjbh7Qa69",
+  "data": {
+    "bcc": "bcc@example.com",
+    "cc": "cc@example.com",
+    "from": {
+      "email": "info-app@example.com",
+      "name": "Example App"
+    },
+    "html_body": "<p>example</p>",
+    "reply_to": "reply-to@example.com",
+    "subject": "Example Notification",
+    "text_body": "example",
+    "to": "user@example.com"
+  },
+  "inserted_at": "2021-04-06T12:00:00Z"
+}

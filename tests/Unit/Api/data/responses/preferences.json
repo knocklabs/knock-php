@@ -1,0 +1,22 @@
+{
+  "__typename": "PreferenceSet",
+  "id": "default",
+  "workflows": {
+    "dinosaurs-loose": {
+      "channel_types": {
+        "email": true
+      }
+    }
+  },
+  "channel_types": {
+    "in_app_feed": true,
+    "sms": true
+  },
+  "categories": {
+    "park-wide": {
+      "channel_types": {
+        "sms": false
+      }
+    }
+  }
+}

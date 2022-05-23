@@ -1,0 +1,43 @@
+{
+  "name": "knocklabs/knock-php",
+  "description": "Knock PHP SDK",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Knock",
+      "email": "hello@knock.app",
+      "homepage": "https://knock.app/"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-json": "*",
+    "http-interop/http-factory-guzzle": "^1.2",
+    "league/uri-components": "^2.4",
+    "php-http/client-common": "^2.5",
+    "php-http/discovery": "^1.14",
+    "php-http/message-factory": "^1.0",
+    "php-http/multipart-stream-builder": "^1.2",
+    "phpunit/phpunit": "^9.5",
+    "psr/http-message": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Knock\\KnockSdk\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "require-dev": {
+    "php-http/mock-client": "^1.5",
+    "phpstan/phpstan": "^1.7"
+  }
+}

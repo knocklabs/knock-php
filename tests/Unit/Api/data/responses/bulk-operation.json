@@ -1,0 +1,14 @@
+{
+  "__typename": "BulkOperation",
+  "completed_at": null,
+  "estimated_total_rows": 42,
+  "failed_at": null,
+  "id": "b4f6f61e-3634-4e80-af0d-9c83e9acc6f3",
+  "name": "bulk_op",
+  "processed_rows": 0,
+  "progress_path": "/v1/bulk_operations/b4f6f61e-3634-4e80-af0d-9c83e9acc6f3",
+  "started_at": null,
+  "status": "queued",
+  "inserted_at": "2021-03-05T12:00:00Z",
+  "updated_at": "2021-03-05T12:00:00Z"
+}

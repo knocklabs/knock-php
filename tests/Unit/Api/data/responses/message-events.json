@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "__typename": "MessageEvent",
+      "__cursor": "g3QAAAABZAACaWRtAAAAGzFzTXRJc1J2WnRZZjg2YU9ma00yUENwQzZYYw==",
+      "id": "25cQpkVBUTbzKKug0qVEDqcAJxm",
+      "environment_id": "a49e3beb-f654-4f2f-8963-f69cc1f7e6dc",
+      "recipient": "e62cbb03-86a0-47d6-84fe-f49981906267",
+      "data": {},
+      "type": "enqueued",
+      "inserted_at": "2021-04-06T12:00:00Z"
+    }
+  ],
+  "page_info": {
+    "__typename": "PageInfo",
+    "after": null,
+    "before": null,
+    "page_size": 50
+  }
+}

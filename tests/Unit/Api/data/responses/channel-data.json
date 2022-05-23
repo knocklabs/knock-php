@@ -1,0 +1,9 @@
+{
+  "__typename": "ChannelData",
+  "channel_id": "c2189f43-c732-488a-bfa0-fdf16e145cdf",
+  "data": {
+    "tokens": [
+      "some-fcm-token"
+    ]
+  }
+}

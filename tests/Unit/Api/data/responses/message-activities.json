@@ -1,0 +1,38 @@
+{
+  "entries": [
+    {
+      "__typename": "Activity",
+      "__cursor": "g3QAAAABZAACaWRtAAAAGzFzTXRJc1J2WnRZZjg2YU9ma00yUENwQzZYYw==",
+      "id": "25cQpkVBUTbzKKug0qVEDqcAJxm",
+      "data": {
+        "notification_payload": "foobar"
+      },
+      "actor": {
+        "__typename": "User",
+        "id": "7b553fc3-eb65-4ad8-8836-d1224dad703b",
+        "created_at": "2022-04-07T12:00:00.00Z",
+        "email": "actor@example.com",
+        "name": "Actor",
+        "updated_at": "2022-04-07T12:00:00.00Z"
+      },
+      "recipient": {
+        "__typename": "Object",
+        "id": "f7a84d87-7b9e-4128-82a8-cde38593817f",
+        "collection": "projects",
+        "properties": {
+          "name": "Project 1"
+        },
+        "created_at": "2022-04-07T12:00:00.00Z",
+        "updated_at": "2022-04-07T12:00:00.00Z"
+      },
+      "inserted_at": "2021-04-06T12:00:00Z",
+      "updated_at": "2021-04-06T12:00:00Z"
+    }
+  ],
+  "page_info": {
+    "__typename": "PageInfo",
+    "after": null,
+    "before": null,
+    "page_size": 50
+  }
+}

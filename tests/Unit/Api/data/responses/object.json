@@ -1,0 +1,10 @@
+{
+  "__typename": "Object",
+  "id": "project-123",
+  "collection": "projects",
+  "properties": {
+    "name": "My project"
+  },
+  "created_at": null,
+  "updated_at": "2021-03-05T12:00:00Z"
+}

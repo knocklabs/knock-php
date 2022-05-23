@@ -1,0 +1,10 @@
+{
+  "__typename": "User",
+  "id": "user_1",
+  "name": "User name",
+  "email": "user@example.com",
+  "foo": "bar",
+  "baz": true,
+  "created_at": null,
+  "updated_at": "2021-03-05T12:00:00Z"
+}
