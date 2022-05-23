@@ -2,21 +2,21 @@
 
 namespace Knock\KnockSdk\Api;
 
+use function array_filter;
+use function array_merge;
+use function count;
 use Http\Client\Exception;
 use Knock\KnockSdk\Client;
 use Knock\KnockSdk\HttpClient\Message\ResponseMediator;
 use Knock\KnockSdk\HttpClient\Utils\JsonArray;
 use Knock\KnockSdk\HttpClient\Utils\QueryStringBuilder;
 use Psr\Http\Message\ResponseInterface;
-use function array_filter;
-use function array_merge;
-use function count;
 use function sprintf;
 
 abstract class AbstractApi
 {
     /**
-     * @var Client $client
+     * @var Client
      */
     protected Client $client;
 

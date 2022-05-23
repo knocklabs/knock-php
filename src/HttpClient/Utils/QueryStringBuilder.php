@@ -2,8 +2,8 @@
 
 namespace Knock\KnockSdk\HttpClient\Utils;
 
-use League\Uri\Components\Query;
 use function count;
+use League\Uri\Components\Query;
 use function sprintf;
 
 final class QueryStringBuilder

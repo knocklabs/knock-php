@@ -144,8 +144,7 @@ class Users extends AbstractApi
         array $body = [],
         string $preferenceSetId = 'default',
         array $headers = []
-    ): array
-    {
+    ): array {
         $url = $this->url('/users/%s/preferences/%s', $userId, $preferenceSetId);
 
         return $this->putRequest($url, $body, $headers);

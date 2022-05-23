@@ -2,13 +2,13 @@
 
 namespace Knock\KnockSdk\HttpClient\Utils;
 
-use Knock\KnockSdk\Exception\RuntimeException;
 use function json_decode;
 use function json_encode;
+use const JSON_ERROR_NONE;
 use function json_last_error;
 use function json_last_error_msg;
+use Knock\KnockSdk\Exception\RuntimeException;
 use function sprintf;
-use const JSON_ERROR_NONE;
 
 final class JsonArray
 {
@@ -30,7 +30,7 @@ final class JsonArray
             throw new RuntimeException(sprintf('json_decode error: %s', json_last_error_msg()));
         }
 
-        if (!\is_array($data)) {
+        if (! \is_array($data)) {
             throw new RuntimeException(sprintf('json_decode error: Expected JSON of type array, %s given.', \get_debug_type($data)));
         }
 

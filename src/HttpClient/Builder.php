@@ -51,8 +51,7 @@ class Builder
         RequestFactoryInterface $requestFactory = null,
         StreamFactoryInterface $streamFactory = null,
         UriFactoryInterface $uriFactory = null
-    )
-    {
+    ) {
         $this->httpClient = $httpClient ?: Psr18ClientDiscovery::find();
         $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
         $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();

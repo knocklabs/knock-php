@@ -88,7 +88,7 @@ class UsersTest extends ApiTest
         $userData = [
             [
                 'id' => '6711d4b6-7e8f-4c84-8388-47eec3be89d6',
-            ]
+            ],
         ];
 
         $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));

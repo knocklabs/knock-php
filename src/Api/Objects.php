@@ -136,8 +136,7 @@ class Objects extends AbstractApi
         array $body,
         string $preferenceSetId = 'default',
         array $headers = []
-    ): array
-    {
+    ): array {
         $url = $this->url('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceSetId);
 
         return $this->putRequest($url, $body, $headers);
@@ -173,8 +172,7 @@ class Objects extends AbstractApi
         string $channelId,
         array $body,
         array $headers = []
-    ): array
-    {
+    ): array {
         $url = $this->url('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->putRequest($url, $body, $headers);
@@ -193,8 +191,7 @@ class Objects extends AbstractApi
         string $objectId,
         string $channelId,
         array $headers = []
-    )
-    {
+    ) {
         $url = $this->url('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->deleteRequest($url, [], $headers);

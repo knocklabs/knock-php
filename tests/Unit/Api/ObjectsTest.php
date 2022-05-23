@@ -78,7 +78,7 @@ class ObjectsTest extends ApiTest
             [
                 'id' => 'project-1',
                 'name' => 'Project one',
-            ]
+            ],
         ];
         $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
 

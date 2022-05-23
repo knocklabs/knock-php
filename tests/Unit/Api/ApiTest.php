@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Api;
 
+use function array_merge;
 use Knock\KnockSdk\Client;
 use Knock\KnockSdk\HttpClient\Builder;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Client\ClientInterface;
 use Tests\TestCase;
-use function array_merge;
 
 abstract class ApiTest extends TestCase
 {

@@ -2,11 +2,10 @@
 
 namespace Knock\KnockSdk\HttpClient\Message;
 
+use function is_array;
 use Knock\KnockSdk\Exception\RuntimeException;
 use Knock\KnockSdk\HttpClient\Utils\JsonArray;
 use Psr\Http\Message\ResponseInterface;
-use function array_shift;
-use function is_array;
 
 class ResponseMediator
 {
@@ -49,7 +48,7 @@ class ResponseMediator
     {
         $body = (string)$response->getBody();
 
-        if (!\in_array($body, ['', 'null', 'true', 'false'], true) && 0 === \strpos($response->getHeaderLine(self::CONTENT_TYPE_HEADER), self::JSON_CONTENT_TYPE)) {
+        if (! \in_array($body, ['', 'null', 'true', 'false'], true) && 0 === \strpos($response->getHeaderLine(self::CONTENT_TYPE_HEADER), self::JSON_CONTENT_TYPE)) {
             return JsonArray::decode($body);
         }
 
@@ -71,7 +70,7 @@ class ResponseMediator
             return null;
         }
 
-        if (!is_array($content)) {
+        if (! is_array($content)) {
             return null;
         }
 

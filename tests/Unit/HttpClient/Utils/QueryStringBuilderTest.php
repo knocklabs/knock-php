@@ -23,7 +23,7 @@ class QueryStringBuilderTest extends TestCase
     {
         yield 'key value pairs' => [
             [
-                'per_page' => 30
+                'per_page' => 30,
             ],
             'per_page=30',
         ];
