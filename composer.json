@@ -19,7 +19,6 @@
     "php-http/discovery": "^1.14",
     "php-http/message-factory": "^1.0",
     "php-http/multipart-stream-builder": "^1.2",
-    "phpunit/phpunit": "^9.5",
     "psr/http-message": "^1.0"
   },
   "autoload": {
@@ -37,6 +36,7 @@
     "sort-packages": true
   },
   "require-dev": {
+    "phpunit/phpunit": "^9.5",
     "friendsofphp/php-cs-fixer": "^3.8",
     "php-http/mock-client": "^1.5",
     "phpstan/phpstan": "^1.7",
