@@ -25,7 +25,7 @@ $client = new Client('sk_12345');
 ### Identifying users
 
 ```php
-$client->users()->identify('dinosaurs-loose', [
+$client->users()->identify('jhammond', [
     'name' => 'John Hammond',
     'email' => 'jhammond@ingen.net',
 ]);
@@ -34,7 +34,7 @@ $client->users()->identify('dinosaurs-loose', [
 ### Sending notifies (triggering workflows)
 
 ```php
-$client->notify('jhammond', [
+$client->notify('dinosaurs-loose', [
     // user id of who performed the action
     'actor' => 'dnedry',
     // list of user ids for who should receive the notification
