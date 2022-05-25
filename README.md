@@ -25,7 +25,7 @@ $client = new Client('sk_12345');
 ### Identifying users
 
 ```php
-$client->users()->identify('jhammond', [
+$client->users()->identify('dinosaurs-loose', [
     'name' => 'John Hammond',
     'email' => 'jhammond@ingen.net',
 ]);
