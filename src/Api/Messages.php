@@ -108,7 +108,7 @@ class Messages extends AbstractApi
      * @return array
      * @throws Exception
      */
-    public function bulkUpdateStatus(string $status, array $messageIds, array $headers = []): array
+    public function batchChangeStatus(string $status, array $messageIds, array $headers = []): array
     {
         $url = $this->url('/messages/batch/%s', $status);
 

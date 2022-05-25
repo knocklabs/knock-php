@@ -128,7 +128,7 @@ class MessagesTest extends ApiTest
             ->with(sprintf('/messages/batch/%s', $status))
             ->will($this->returnValue($expected));
 
-        $this->assertEquals($expected, $messages->bulkUpdateStatus($status, $messageIds));
+        $this->assertEquals($expected, $messages->batchChangeStatus($status, $messageIds));
     }
 
     /** @test */
