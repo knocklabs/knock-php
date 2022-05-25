@@ -7,7 +7,7 @@ See the [documentation](https://docs.knock.app) for PHP usage examples.
 ## Installation
 
 ```bash
-composer require knocklabs/php-sdk
+composer require knocklabs/php-sdk php-http/guzzle7-adapter
 ```
 
 ## Configuration
