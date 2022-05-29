@@ -1,5 +1,5 @@
 {
-  "name": "knocklabs/knock-php",
+  "name": "knocklabs/knockphp",
   "description": "Knock PHP SDK",
   "type": "library",
   "license": "MIT",
@@ -13,13 +13,15 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "ext-json": "*",
-    "http-interop/http-factory-guzzle": "^1.2",
     "league/uri-components": "^2.4",
     "php-http/client-common": "^2.5",
     "php-http/discovery": "^1.14",
+    "php-http/httplug": "^2.3",
     "php-http/message-factory": "^1.0",
     "php-http/multipart-stream-builder": "^1.2",
-    "psr/http-message": "^1.0"
+    "psr/http-message": "^1.0",
+    "psr/http-client-implementation": "^1.0",
+    "psr/http-factory-implementation": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -40,6 +42,7 @@
     "php-http/mock-client": "^1.5",
     "phpstan/phpstan": "^1.7",
     "phpstan/phpstan-phpunit": "^1.1",
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+    "http-interop/http-factory-guzzle": "^1.2"
   }
 }
