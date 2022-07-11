@@ -1,0 +1,14 @@
+{
+  "__typename": "Tenant",
+  "id": "tenant-123",
+  "properties": {
+    "name": "My Tenant",
+    "settings": {
+      "branding": {
+        "primary_color": "#FFFFFF"
+      }
+    }
+  },
+  "created_at": null,
+  "updated_at": "2021-03-05T12:00:00Z"
+}

@@ -117,3 +117,6 @@ use Firebase\JWT\JWT;
 $privateKey = env('KNOCK_SIGNING_KEY');
 $encoded = JWT::encode(['sub' => 'jhammond'], $privateKey, 'RS256');
 ```
+
+## Test
+To run tests, first run `composer` in the terminal. Once compiled, you can run `phpunit tests/` to run the suite.
