@@ -173,6 +173,7 @@ class Objects extends AbstractApi
         array $body,
         array $headers = []
     ): array {
+        $body = ['data' => $body];
         $url = $this->url('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->putRequest($url, $body, $headers);
