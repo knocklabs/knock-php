@@ -171,7 +171,7 @@ class ObjectsTest extends ApiTest
         $objects = $this->getApiMock();
         $objects->expects($this->once())
             ->method('getRequest')
-            ->with(sprintf('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
+            ->with(sprintf('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
             ->will($this->returnValue($expected));
 
         $this->assertEquals($expected, $objects->getChannelData($collection, $objectId, $channelId));
@@ -189,7 +189,7 @@ class ObjectsTest extends ApiTest
         $objects = $this->getApiMock();
         $objects->expects($this->once())
             ->method('putRequest')
-            ->with(sprintf('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
+            ->with(sprintf('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
             ->will($this->returnValue($expected));
 
         $this->assertEquals($expected, $objects->setChannelData($collection, $objectId, $channelId, []));
@@ -207,7 +207,7 @@ class ObjectsTest extends ApiTest
         $objects = $this->getApiMock();
         $objects->expects($this->once())
             ->method('deleteRequest')
-            ->with(sprintf('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
+            ->with(sprintf('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
             ->will($this->returnValue($expected));
 
         $this->assertEquals($expected, $objects->unsetChannelData($collection, $objectId, $channelId));

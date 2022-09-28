@@ -3,6 +3,7 @@
 namespace Tests\Unit\Api;
 
 use function array_merge;
+
 use Knock\KnockSdk\Client;
 use Knock\KnockSdk\HttpClient\Builder;
 use PHPUnit\Framework\MockObject\MockObject;

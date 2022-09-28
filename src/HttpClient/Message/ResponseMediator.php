@@ -3,6 +3,7 @@
 namespace Knock\KnockSdk\HttpClient\Message;
 
 use function is_array;
+
 use Knock\KnockSdk\Exception\RuntimeException;
 use Knock\KnockSdk\HttpClient\Utils\JsonArray;
 use Psr\Http\Message\ResponseInterface;

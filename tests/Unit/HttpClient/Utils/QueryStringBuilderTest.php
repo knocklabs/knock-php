@@ -4,6 +4,7 @@ namespace Tests\Unit\HttpClient\Utils;
 
 use Knock\KnockSdk\HttpClient\Utils\QueryStringBuilder;
 use PHPUnit\Framework\TestCase;
+
 use function sprintf;
 
 class QueryStringBuilderTest extends TestCase
