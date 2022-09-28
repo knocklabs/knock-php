@@ -187,6 +187,7 @@ class Users extends AbstractApi
      */
     public function setChannelData(string $userId, string $channelId, array $body, array $headers = []): array
     {
+        $body = ['data' => $body];
         $url = $this->url('/users/%s/channel_data/%s', $userId, $channelId);
 
         return $this->putRequest($url, $body, $headers);
