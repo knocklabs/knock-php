@@ -152,7 +152,7 @@ class Objects extends AbstractApi
      */
     public function getChannelData(string $collection, string $objectId, string $channelId, array $headers = []): array
     {
-        $url = $this->url('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
+        $url = $this->url('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->getRequest($url, [], $headers);
     }
@@ -173,7 +173,7 @@ class Objects extends AbstractApi
         array $body,
         array $headers = []
     ): array {
-        $url = $this->url('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
+        $url = $this->url('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->putRequest($url, $body, $headers);
     }
@@ -192,7 +192,7 @@ class Objects extends AbstractApi
         string $channelId,
         array $headers = []
     ) {
-        $url = $this->url('/object/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
+        $url = $this->url('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->deleteRequest($url, [], $headers);
     }
