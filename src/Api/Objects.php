@@ -31,7 +31,7 @@ class Objects extends AbstractApi
     public function getMessages(string $collection, string $objectId, array $params = [], array $headers = []): array
     {
         if (array_key_exists('trigger_data', $params)) {
-          $params['trigger_data'] = json_encode($params['trigger_data']);
+            $params['trigger_data'] = json_encode($params['trigger_data']);
         }
         $url = $this->url('/objects/%s/%s/messages', $collection, $objectId);
 

@@ -15,7 +15,7 @@ class Messages extends AbstractApi
     public function list(array $params = [], array $headers = []): array
     {
         if (array_key_exists('trigger_data', $params)) {
-          $params['trigger_data'] = json_encode($params['trigger_data']);
+            $params['trigger_data'] = json_encode($params['trigger_data']);
         }
         $url = $this->url('/messages');
 
@@ -45,7 +45,7 @@ class Messages extends AbstractApi
     public function getActivities(string $messageId, array $params = [], array $headers = []): array
     {
         if (array_key_exists('trigger_data', $params)) {
-          $params['trigger_data'] = json_encode($params['trigger_data']);
+            $params['trigger_data'] = json_encode($params['trigger_data']);
         }
         $url = $this->url('/messages/%s/activities', $messageId);
 

@@ -17,7 +17,7 @@ class Feeds extends AbstractApi
     public function getUserFeed(string $userId, string $feedId, array $params = [], array $headers = []): array
     {
         if (array_key_exists('trigger_data', $params)) {
-          $params['trigger_data'] = json_encode($params['trigger_data']);
+            $params['trigger_data'] = json_encode($params['trigger_data']);
         }
         $url = $this->url('/users/%s/feeds/%s', $userId, $feedId);
 
