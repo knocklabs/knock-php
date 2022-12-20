@@ -43,6 +43,9 @@ class Users extends AbstractApi
      */
     public function getMessages(string $userId, array $params = [], array $headers = []): array
     {
+        if (array_key_exists('trigger_data', $params)) {
+          $params['trigger_data'] = json_encode($params['trigger_data']);
+        }
         $url = $this->url('/users/%s/messages', $userId);
 
         return $this->getRequest($url, $params, $headers);
