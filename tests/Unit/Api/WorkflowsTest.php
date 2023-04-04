@@ -20,7 +20,7 @@ class WorkflowsTest extends ApiTest
 
         $this->assertEquals($expected, $workflows->trigger($key, []));
     }
-    
+
     /** @test */
     public function will_trigger_workflow_with_idempotency_key()
     {
