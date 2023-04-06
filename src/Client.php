@@ -148,11 +148,12 @@ class Client
     /**
      * @param string $key
      * @param array $body
+     * @param array $headers
      * @return array
      * @throws Exception
      */
-    public function notify(string $key, array $body): array
+    public function notify(string $key, array $body, array $headers = []): array
     {
-        return $this->workflows()->trigger($key, $body);
+        return $this->workflows()->trigger($key, $body, $headers);
     }
 }
