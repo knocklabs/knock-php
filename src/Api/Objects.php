@@ -41,6 +41,21 @@ class Objects extends AbstractApi
     /**
      * @param string $collection
      * @param string $objectId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getSchedules(string $collection, string $objectId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/objects/%s/%s/schedules', $collection, $objectId);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $collection
+     * @param string $objectId
      * @param array $body
      * @param array $headers
      * @return array

@@ -53,6 +53,20 @@ class Users extends AbstractApi
 
     /**
      * @param string $userId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getSchedules(string $userId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/users/%s/schedules', $userId);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $userId
      * @param array $body
      * @param array $headers
      * @return array|string
