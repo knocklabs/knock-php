@@ -18,6 +18,7 @@ class Objects extends AbstractApi
 
         return $this->getRequest($url, $params, $headers);
     }
+
     /**
      * @param string $collection
      * @param string $objectId
