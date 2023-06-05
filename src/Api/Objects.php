@@ -8,6 +8,18 @@ class Objects extends AbstractApi
 {
     /**
      * @param string $collection
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function list(string $collection, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/objects/%s', $collection);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+    /**
+     * @param string $collection
      * @param string $objectId
      * @param array $headers
      * @return array
