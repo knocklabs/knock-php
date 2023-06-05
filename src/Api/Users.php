@@ -80,6 +80,20 @@ class Users extends AbstractApi
 
     /**
      * @param string $userId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getSubscriptions(string $userId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/users/%s/subscriptions', $userId);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $userId
      * @param array $body
      * @param array $headers
      * @return array|string
