@@ -8,6 +8,19 @@ class Objects extends AbstractApi
 {
     /**
      * @param string $collection
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function list(string $collection, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/objects/%s', $collection);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $collection
      * @param string $objectId
      * @param array $headers
      * @return array
@@ -214,5 +227,66 @@ class Objects extends AbstractApi
         $url = $this->url('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId);
 
         return $this->deleteRequest($url, [], $headers);
+    }
+
+    /**
+     * @param string $collection
+     * @param string $objectId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function listSubscriptions(string $collection, string $objectId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/objects/%s/%s/subscriptions', $collection, $objectId);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $collection
+     * @param string $objectId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getSubscriptions(string $collection, string $objectId, array $params = [], array $headers = []): array
+    {
+        $params['mode'] = 'recipient';
+        $url = $this->url('/objects/%s/%s/subscriptions', $collection, $objectId);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $collection
+     * @param string $objectId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function addSubscriptions(string $collection, string $objectId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/objects/%s/%s/subscriptions', $collection, $objectId);
+
+        return $this->postRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $collection
+     * @param string $objectId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function deleteSubscriptions(string $collection, string $objectId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/objects/%s/%s/subscriptions', $collection, $objectId);
+
+        return $this->deleteRequest($url, $params, $headers);
     }
 }
