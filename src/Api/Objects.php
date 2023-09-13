@@ -125,6 +125,20 @@ class Objects extends AbstractApi
 
     /**
      * @param string $collection
+     * @param array $subscriptions
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function bulkAddSubscriptions(string $collection, array $subscriptions, array $headers = []): array
+    {
+        $url = $this->url('/objects/%s/bulk/subscriptions/add', $collection);
+
+        return $this->postRequest($url, ['subscriptions' => $subscriptions], $headers);
+    }
+
+    /**
+     * @param string $collection
      * @param string $objectId
      * @param array $headers
      * @return array
