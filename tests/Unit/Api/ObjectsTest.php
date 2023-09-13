@@ -113,23 +113,23 @@ class ObjectsTest extends ApiTest
     /** @test */
     public function will_bulk_add_subscriptions()
     {
-      $collection = 'projects';
-      $subscriptions = [
-          [
-            'id' => 'object-1',
-            'properties' => ['foo' => 'bar'],
-            'recipients' => ['user-1', 'user-2']
-          ]
-      ];
-      $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
+        $collection = 'projects';
+        $subscriptions = [
+            [
+              'id' => 'object-1',
+              'properties' => ['foo' => 'bar'],
+              'recipients' => ['user-1', 'user-2'],
+            ],
+        ];
+        $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
 
-      $objects = $this->getApiMock();
-      $objects->expects($this->once())
-          ->method('postRequest')
-          ->with(sprintf('/objects/%s/bulk/subscriptions/add', $collection))
-          ->will($this->returnValue($expected));
+        $objects = $this->getApiMock();
+        $objects->expects($this->once())
+            ->method('postRequest')
+            ->with(sprintf('/objects/%s/bulk/subscriptions/add', $collection))
+            ->will($this->returnValue($expected));
 
-      $this->assertEquals($expected, $objects->bulkAddSubscriptions($collection, $subscriptions));
+        $this->assertEquals($expected, $objects->bulkAddSubscriptions($collection, $subscriptions));
     }
 
     /** @test */
