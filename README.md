@@ -34,7 +34,7 @@ $client->users()->identify('jhammond', [
 ### Sending notifies (triggering workflows)
 
 ```php
-$client->notify('dinosaurs-loose', [
+$client->workflows()->trigger('dinosaurs-loose', [
     // user id of who performed the action
     'actor' => 'dnedry',
     // list of user ids for who should receive the notification
