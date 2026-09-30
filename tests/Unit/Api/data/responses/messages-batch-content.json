@@ -1,0 +1,12 @@
+[
+  {
+    "__typename": "MessageContent",
+    "data": {
+      "__typename": "MessageSmsContent",
+      "body": "URGENT: Power failure detected in perimeter fencing. Backup generators failed to engage. Technical team dispatched. Maintain lockdown protocols.",
+      "to": "+15553982647"
+    },
+    "inserted_at": "1993-06-11T20:30:00Z",
+    "message_id": "2w3YUpTTOxuDvZFji8OMsKrG176"
+  }
+]
