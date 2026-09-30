@@ -3,6 +3,7 @@
 namespace Tests\Unit\HttpClient\Utils;
 
 use Knock\KnockSdk\HttpClient\Utils\QueryStringBuilder;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function sprintf;
@@ -10,17 +11,16 @@ use function sprintf;
 class QueryStringBuilderTest extends TestCase
 {
     /**
-     * @dataProvider queryStringProvider
-     *
      * @param array $query
      * @param string $expected
      */
+    #[DataProvider('queryStringProvider')]
     public function testBuild(array $query, string $expected): void
     {
         $this->assertSame(sprintf('?%s', $expected), QueryStringBuilder::build($query));
     }
 
-    public function queryStringProvider()
+    public static function queryStringProvider()
     {
         yield 'key value pairs' => [
             [

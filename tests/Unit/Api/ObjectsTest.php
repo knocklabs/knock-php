@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Objects;
+use PHPUnit\Framework\Attributes\Test;
 
-class ObjectsTest extends ApiTest
+class ObjectsTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_get_object()
     {
         $collection = 'projects';
@@ -17,12 +18,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/objects/%s/%s', $collection, $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->get($collection, $id));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_object_messages()
     {
         $collection = 'projects';
@@ -33,12 +34,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/objects/%s/%s/messages', $collection, $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->getMessages($collection, $id));
     }
 
-    /** @test */
+    #[Test]
     public function will_set_object()
     {
         $collection = 'projects';
@@ -49,12 +50,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('putRequest')
             ->with(sprintf('/objects/%s/%s', $collection, $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->set($collection, $id, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_delete_object()
     {
         $collection = 'projects';
@@ -65,12 +66,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('deleteRequest')
             ->with(sprintf('/objects/%s/%s', $collection, $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->delete($collection, $id));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_set_objects()
     {
         $collection = 'projects';
@@ -86,12 +87,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/objects/%s/bulk/set', $collection))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->bulkSet($collection, $objectsData));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_delete_objects()
     {
         $collection = 'projects';
@@ -105,12 +106,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/objects/%s/bulk/delete', $collection))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->bulkDelete($collection, $objectIds));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_add_subscriptions()
     {
         $collection = 'projects';
@@ -127,12 +128,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/objects/%s/bulk/subscriptions/add', $collection))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->bulkAddSubscriptions($collection, $subscriptions));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_object_preferences()
     {
         $collection = 'projects';
@@ -143,12 +144,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/objects/%s/%s/preferences', $collection, $objectId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->getPreferences($collection, $objectId));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_object_preference()
     {
         $collection = 'projects';
@@ -160,12 +161,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->getPreference($collection, $objectId, $preferenceId));
     }
 
-    /** @test */
+    #[Test]
     public function will_pass_headers_as_headers_when_getting_object_preference()
     {
         $collection = 'projects';
@@ -178,12 +179,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceId), [], $headers)
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->getPreference($collection, $objectId, $preferenceId, $headers));
     }
 
-    /** @test */
+    #[Test]
     public function will_set_object_preference()
     {
         $collection = 'projects';
@@ -194,12 +195,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('putRequest')
             ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, 'default'))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->setPreferences($collection, $objectId, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_object_channel_data()
     {
         $collection = 'projects';
@@ -212,12 +213,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->getChannelData($collection, $objectId, $channelId));
     }
 
-    /** @test */
+    #[Test]
     public function will_set_object_channel_data()
     {
         $collection = 'projects';
@@ -230,12 +231,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('putRequest')
             ->with(sprintf('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->setChannelData($collection, $objectId, $channelId, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_unset_object_channel_data()
     {
         $collection = 'projects';
@@ -248,12 +249,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('deleteRequest')
             ->with(sprintf('/objects/%s/%s/channel_data/%s', $collection, $objectId, $channelId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->unsetChannelData($collection, $objectId, $channelId));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_delete_subscriptions()
     {
         $collection = 'projects';
@@ -264,12 +265,12 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/objects/%s/bulk/subscriptions/delete', $collection), ['subscriptions' => $subscriptions])
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $objects->bulkDeleteSubscriptions($collection, $subscriptions));
     }
 
-    /** @test */
+    #[Test]
     public function will_unset_object_preferences()
     {
         $collection = 'projects';
@@ -279,7 +280,7 @@ class ObjectsTest extends ApiTest
         $objects->expects($this->once())
             ->method('deleteRequest')
             ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, 'default'))
-            ->will($this->returnValue(''));
+            ->willReturn('');
 
         $this->assertEquals('', $objects->unsetPreferences($collection, $objectId));
     }

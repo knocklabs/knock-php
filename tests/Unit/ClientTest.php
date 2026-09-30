@@ -13,20 +13,20 @@ use Knock\KnockSdk\Api\Tenants;
 use Knock\KnockSdk\Api\Users;
 use Knock\KnockSdk\Api\WorkflowRecipientRuns;
 use Knock\KnockSdk\Api\Workflows;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ClientTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider provider
-     */
+    #[Test]
+    #[DataProvider('provider')]
     public function will_return_provided_class_names($methodName, $className)
     {
         $this->assertInstanceOf($className, $this->client->$methodName());
     }
 
-    public function provider(): array
+    public static function provider(): array
     {
         return [
             ['audiences', Audiences::class],

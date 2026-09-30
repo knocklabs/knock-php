@@ -6,11 +6,12 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Knock\KnockSdk\Exception\RuntimeException;
 use Knock\KnockSdk\HttpClient\Message\ResponseMediator;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ResponseMediatorTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function get_content(): void
     {
         $response = new Response(
@@ -22,7 +23,7 @@ class ResponseMediatorTest extends TestCase
         $this->assertSame(['foo' => 'bar'], ResponseMediator::getContent($response));
     }
 
-    /** @test */
+    #[Test]
     public function get_content_not_json(): void
     {
         $response = new Response(
@@ -34,7 +35,7 @@ class ResponseMediatorTest extends TestCase
         $this->assertSame('foobar', ResponseMediator::getContent($response));
     }
 
-    /** @test */
+    #[Test]
     public function get_content_invalid_json(): void
     {
         $response = new Response(
@@ -49,7 +50,7 @@ class ResponseMediatorTest extends TestCase
         ResponseMediator::getContent($response);
     }
 
-    /** @test */
+    #[Test]
     public function get_error_message_invalid_json(): void
     {
         $response = new Response(

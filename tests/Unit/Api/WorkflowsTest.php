@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Workflows;
+use PHPUnit\Framework\Attributes\Test;
 
-class WorkflowsTest extends ApiTest
+class WorkflowsTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_trigger_workflow()
     {
         $key = 'new-comment';
@@ -16,12 +17,12 @@ class WorkflowsTest extends ApiTest
         $workflows->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/workflows/%s/trigger', $key))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $workflows->trigger($key, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_trigger_workflow_with_idempotency_key()
     {
         $key = 'new-comment';
@@ -32,12 +33,12 @@ class WorkflowsTest extends ApiTest
         $workflows->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/workflows/%s/trigger', $key), [], $headers)
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $workflows->trigger($key, [], $headers));
     }
 
-    /** @test */
+    #[Test]
     public function will_cancel_workflow()
     {
         $key = 'new-comment';
@@ -47,12 +48,12 @@ class WorkflowsTest extends ApiTest
         $workflows->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/workflows/%s/cancel', $key))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $workflows->cancel($key, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_create_schedules()
     {
         $schedules = [[
@@ -66,7 +67,7 @@ class WorkflowsTest extends ApiTest
         $workflows->expects($this->once())
             ->method('postRequest')
             ->with('/schedules/bulk/create', ['schedules' => $schedules])
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $workflows->bulkCreateSchedules($schedules));
     }

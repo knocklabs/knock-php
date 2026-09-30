@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Messages;
+use PHPUnit\Framework\Attributes\Test;
 
-class MessagesTest extends ApiTest
+class MessagesTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_list_messages()
     {
         $expected = $this->getContent(sprintf('%s/data/responses/messages.json', __DIR__));
@@ -15,12 +16,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with('/messages')
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->list());
     }
 
-    /** @test */
+    #[Test]
     public function will_get_message()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -30,12 +31,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/messages/%s', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->get($id));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_message_activities()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -45,12 +46,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/messages/%s/activities', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->getActivities($id));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_message_events()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -60,12 +61,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/messages/%s/events', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->getEvents($id));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_message_content()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -75,12 +76,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/messages/%s/content', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->getContent($id));
     }
 
-    /** @test */
+    #[Test]
     public function will_update_message_status()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -91,12 +92,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('putRequest')
             ->with(sprintf('/messages/%s/%s', $id, $status))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->updateStatus($id, $status));
     }
 
-    /** @test */
+    #[Test]
     public function will_undo_message_status()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -107,12 +108,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('deleteRequest')
             ->with(sprintf('/messages/%s/%s', $id, $status))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->undoStatus($id, $status));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_update_message_status()
     {
         $status = 'read';
@@ -126,12 +127,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/messages/batch/%s', $status))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->batchChangeStatus($status, $messageIds));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_channel_status()
     {
         $channel = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -143,12 +144,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/channels/%s/messages/bulk/%s', $channel, $status))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->bulkUpdateChannelStatus($channel, $status, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_message_delivery_logs()
     {
         $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
@@ -159,12 +160,12 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/messages/%s/delivery_logs', $id), $params)
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->getDeliveryLogs($id, $params));
     }
 
-    /** @test */
+    #[Test]
     public function will_batch_get_message_content()
     {
         $messageIds = ['msg_1', 'msg_2'];
@@ -174,7 +175,7 @@ class MessagesTest extends ApiTest
         $messages->expects($this->once())
             ->method('getRequest')
             ->with('/messages/batch/content', ['message_ids' => $messageIds])
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $messages->batchGetContent($messageIds));
     }
