@@ -235,7 +235,7 @@ class UsersTest extends ApiTest
     }
 
     /** @test */
-    public function will_delete_user_preferences()
+    public function will_unset_user_preferences()
     {
         $id = 'user_1';
 
@@ -245,7 +245,7 @@ class UsersTest extends ApiTest
             ->with(sprintf('/users/%s/preferences/%s', $id, 'default'))
             ->will($this->returnValue(''));
 
-        $this->assertEquals('', $users->deletePreferences($id));
+        $this->assertEquals('', $users->unsetPreferences($id));
     }
 
     /** @test */

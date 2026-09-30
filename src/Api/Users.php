@@ -201,7 +201,7 @@ class Users extends AbstractApi
      * @return array|string
      * @throws Exception
      */
-    public function deletePreferences(string $userId, string $preferenceSetId = 'default', array $headers = [])
+    public function unsetPreferences(string $userId, string $preferenceSetId = 'default', array $headers = [])
     {
         $url = $this->url('/users/%s/preferences/%s', $userId, $preferenceSetId);
 

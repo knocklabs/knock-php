@@ -270,7 +270,7 @@ class ObjectsTest extends ApiTest
     }
 
     /** @test */
-    public function will_delete_object_preferences()
+    public function will_unset_object_preferences()
     {
         $collection = 'projects';
         $objectId = 'project-1';
@@ -281,7 +281,7 @@ class ObjectsTest extends ApiTest
             ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, 'default'))
             ->will($this->returnValue(''));
 
-        $this->assertEquals('', $objects->deletePreferences($collection, $objectId));
+        $this->assertEquals('', $objects->unsetPreferences($collection, $objectId));
     }
 
     protected function getApiClass(): string

@@ -209,7 +209,7 @@ class Objects extends AbstractApi
      * @return array|string
      * @throws Exception
      */
-    public function deletePreferences(
+    public function unsetPreferences(
         string $collection,
         string $objectId,
         string $preferenceSetId = 'default',
