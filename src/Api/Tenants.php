@@ -58,4 +58,30 @@ class Tenants extends AbstractApi
 
         return $this->deleteRequest($url, [], $headers);
     }
+
+    /**
+     * @param array $tenants
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function bulkSet(array $tenants, array $headers = []): array
+    {
+        $url = $this->url('/tenants/bulk/set');
+
+        return $this->postRequest($url, ['tenants' => $tenants], $headers);
+    }
+
+    /**
+     * @param array $tenantIds
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function bulkDelete(array $tenantIds, array $headers = []): array
+    {
+        $url = $this->url('/tenants/bulk/delete');
+
+        return $this->postRequest($url, [], $headers, ['tenant_ids' => $tenantIds]);
+    }
 }
