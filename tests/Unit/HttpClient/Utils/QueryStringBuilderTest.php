@@ -51,6 +51,24 @@ class QueryStringBuilderTest extends TestCase
             'has_errors=true&create_audience=false',
         ];
 
+        yield 'lists of arrays use indexed brackets' => [
+            [
+                'objects' => [
+                    ['collection' => 'projects', 'id' => 'p1'],
+                    ['collection' => 'teams', 'id' => 't1'],
+                ],
+            ],
+            'objects%5B0%5D%5Bcollection%5D=projects&objects%5B0%5D%5Bid%5D=p1'
+                . '&objects%5B1%5D%5Bcollection%5D=teams&objects%5B1%5D%5Bid%5D=t1',
+        ];
+
+        yield 'nested null values are skipped' => [
+            [
+                'query_options' => ['cursor' => null, 'limit' => 10],
+            ],
+            'query_options%5Blimit%5D=10',
+        ];
+
         yield 'null values are skipped' => [
             [
                 'tenant' => null,

@@ -2,8 +2,8 @@
 
 namespace Knock\KnockSdk\HttpClient\Utils;
 
+use function array_is_list;
 use function array_merge;
-use function array_values;
 use function count;
 use function is_array;
 use function is_bool;
@@ -17,7 +17,8 @@ final class QueryStringBuilder
     /**
      * Encode a query as a query string according to RFC 3986.
      *
-     * List arrays are encoded as `key[]=value` and associative arrays as `key[child]=value`.
+     * Lists of scalars are encoded as `key[]=value`, lists of arrays as `key[0][child]=value`
+     * and associative arrays as `key[child]=value`, matching what the Knock API's Plug parser expects.
      *
      * @param array $query
      * @return string
@@ -41,7 +42,7 @@ final class QueryStringBuilder
     private static function toPairs(array $params, ?string $prefix = null): array
     {
         $pairs = [];
-        $isList = array_values($params) === $params;
+        $isScalarList = array_is_list($params) && ! is_array($params[0] ?? null);
 
         foreach ($params as $key => $value) {
             if (null === $value) {
@@ -50,7 +51,7 @@ final class QueryStringBuilder
 
             if (null === $prefix) {
                 $name = (string) $key;
-            } elseif ($isList) {
+            } elseif ($isScalarList) {
                 $name = sprintf('%s[]', $prefix);
             } else {
                 $name = sprintf('%s[%s]', $prefix, $key);
