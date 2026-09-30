@@ -16,9 +16,7 @@ class Guides extends AbstractApi
      */
     public function getUserGuides(string $userId, string $channelId, array $params = [], array $headers = []): array
     {
-        if (array_key_exists('data', $params) && is_array($params['data'])) {
-            $params['data'] = json_encode($params['data']);
-        }
+        $params = self::encodeJsonParam($params, 'data');
         $url = $this->url('/users/%s/guides/%s', $userId, $channelId);
 
         return $this->getRequest($url, $params, $headers);

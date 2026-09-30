@@ -7,6 +7,10 @@ use function array_merge;
 use function count;
 
 use Http\Client\Exception;
+
+use function is_array;
+use function json_encode;
+
 use Knock\KnockSdk\Client;
 use Knock\KnockSdk\HttpClient\Message\ResponseMediator;
 use Knock\KnockSdk\HttpClient\Utils\JsonArray;
@@ -150,16 +154,30 @@ abstract class AbstractApi
      */
     protected function prepareUri(string $uri, array $query = []): string
     {
-        $query = array_filter($query, function ($value): bool {
-            return null !== $value;
-        });
-
         return sprintf(
             '%s%s%s',
             $this->client->getPrefix(),
             $uri,
             QueryStringBuilder::build($query)
         );
+    }
+
+    /**
+     * JSON-encode a query param that the API expects as a JSON object string.
+     * Values that are already strings are passed through untouched.
+     *
+     * @param array $params
+     * @param string $key
+     *
+     * @return array
+     */
+    protected static function encodeJsonParam(array $params, string $key): array
+    {
+        if (isset($params[$key]) && is_array($params[$key])) {
+            $params[$key] = json_encode((object) $params[$key]);
+        }
+
+        return $params;
     }
 
     /**

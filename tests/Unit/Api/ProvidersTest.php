@@ -20,7 +20,7 @@ class ProvidersTest extends ApiTest
             ->with(sprintf('/providers/slack/%s/auth_check', self::CHANNEL_ID), $params)
             ->will($this->returnValue($expected));
 
-        $this->assertEquals($expected, $providers->slackAuthCheck(self::CHANNEL_ID, $params));
+        $this->assertEquals($expected, $providers->slackCheckAuth(self::CHANNEL_ID, $params));
     }
 
     /** @test */
@@ -77,7 +77,7 @@ class ProvidersTest extends ApiTest
 
         $this->assertEquals(
             $expected,
-            $providers->msTeamsAuthCheck(self::CHANNEL_ID, ['ms_teams_tenant_object' => $tenantObject])
+            $providers->msTeamsCheckAuth(self::CHANNEL_ID, ['ms_teams_tenant_object' => $tenantObject])
         );
     }
 

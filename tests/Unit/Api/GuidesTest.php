@@ -30,6 +30,22 @@ class GuidesTest extends ApiTest
         );
     }
 
+    /** @test */
+    public function will_encode_empty_guide_data_as_an_object_and_pass_strings_through()
+    {
+        $channelId = '6a2a5f5c-2d2b-4f5b-9a7e-3c0e4a1b2c3d';
+        $url = sprintf('/users/%s/guides/%s', self::USER_ID, $channelId);
+
+        $guides = $this->getApiMock();
+        $guides->expects($this->exactly(2))
+            ->method('getRequest')
+            ->withConsecutive([$url, ['data' => '{}']], [$url, ['data' => '{"page":"home"}']])
+            ->will($this->returnValue([]));
+
+        $guides->getUserGuides(self::USER_ID, $channelId, ['data' => []]);
+        $guides->getUserGuides(self::USER_ID, $channelId, ['data' => '{"page":"home"}']);
+    }
+
     /**
      * @test
      * @dataProvider guideActionProvider
