@@ -54,11 +54,10 @@ final class JsonArray
     {
         $json = json_encode($value);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
+        if (false === $json || JSON_ERROR_NONE !== json_last_error()) {
             throw new RuntimeException(sprintf('json_encode error: %s', json_last_error_msg()));
         }
 
-        /** @var string */
         return $json;
     }
 }
