@@ -14,6 +14,7 @@ use Knock\KnockSdk\Api\Objects;
 use Knock\KnockSdk\Api\Providers;
 use Knock\KnockSdk\Api\Tenants;
 use Knock\KnockSdk\Api\Users;
+use Knock\KnockSdk\Api\WorkflowRecipientRuns;
 use Knock\KnockSdk\Api\Workflows;
 use Knock\KnockSdk\HttpClient\Builder;
 use Knock\KnockSdk\HttpClient\Plugins\Authentication;
@@ -171,6 +172,14 @@ class Client
     public function users(): Users
     {
         return new Users($this);
+    }
+
+    /**
+     * @return WorkflowRecipientRuns
+     */
+    public function workflowRecipientRuns(): WorkflowRecipientRuns
+    {
+        return new WorkflowRecipientRuns($this);
     }
 
     /**

@@ -1,0 +1,33 @@
+{
+  "__typename": "WorkflowRecipientRun",
+  "actor": "user_456",
+  "error_count": 0,
+  "events": [
+    {
+      "__typename": "WorkflowRecipientRunEvent",
+      "attempt": 1,
+      "data": {
+        "channel_type": "email",
+        "message_id": "2FVHPWxRqNuXQ9krvNP5A6Z4qXe"
+      },
+      "event": "message_enqueued",
+      "id": "2FVHPWxRqNuXQ9krvNP5A6Z4qXe",
+      "inserted_at": "2025-01-01T00:00:00Z",
+      "status": "ok",
+      "step_ref": "email_step_1",
+      "step_type": "channel"
+    }
+  ],
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "inserted_at": "2025-01-01T00:00:00Z",
+  "recipient": "user_123",
+  "status": "completed",
+  "tenant": "tenant_abc",
+  "trigger_source": {
+    "cancellation_key": "comment-123-user-456",
+    "type": "api"
+  },
+  "updated_at": "2025-01-01T00:05:00Z",
+  "workflow": "comment-created",
+  "workflow_run_id": "660e8400-e29b-41d4-a716-446655440000"
+}
