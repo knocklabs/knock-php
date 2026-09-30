@@ -8,6 +8,7 @@ use Http\Client\Exception;
 use Knock\KnockSdk\Api\Audiences;
 use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
+use Knock\KnockSdk\Api\Guides;
 use Knock\KnockSdk\Api\Messages;
 use Knock\KnockSdk\Api\Objects;
 use Knock\KnockSdk\Api\Providers;
@@ -122,6 +123,14 @@ class Client
     public function feeds(): Feeds
     {
         return new Feeds($this);
+    }
+
+    /**
+     * @return Guides
+     */
+    public function guides(): Guides
+    {
+        return new Guides($this);
     }
 
     /**

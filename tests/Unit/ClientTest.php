@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Knock\KnockSdk\Api\Audiences;
 use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
+use Knock\KnockSdk\Api\Guides;
 use Knock\KnockSdk\Api\Messages;
 use Knock\KnockSdk\Api\Objects;
 use Knock\KnockSdk\Api\Providers;
@@ -30,6 +31,7 @@ class ClientTest extends TestCase
             ['audiences', Audiences::class],
             ['bulkOperations', BulkOperations::class],
             ['feeds', Feeds::class],
+            ['guides', Guides::class],
             ['messages', Messages::class],
             ['objects', Objects::class],
             ['providers', Providers::class],

@@ -1,0 +1,138 @@
+{
+  "entries": [
+    {
+      "__typename": "Guide",
+      "activation_url_patterns": [],
+      "activation_url_rules": [
+        {
+          "argument": "/workflows",
+          "directive": "allow",
+          "operator": "contains",
+          "variable": "pathname"
+        },
+        {
+          "argument": "/guides",
+          "directive": "allow",
+          "operator": "equal_to",
+          "variable": "pathname"
+        }
+      ],
+      "active": true,
+      "bypass_global_group_limit": false,
+      "channel_id": "51b92f90-1504-4fda-95c1-495a3883bc4d",
+      "dashboard_url": "https://dashboard.knock.app/~/guides/nps-survey",
+      "id": "53595157-2fac-4a17-8dd7-e6603e32cb3a",
+      "inserted_at": "2025-09-30T14:54:44.217756Z",
+      "key": "nps-survey",
+      "semver": "0.0.3",
+      "steps": [
+        {
+          "content": {
+            "companyName": "Knock",
+            "showFeedbackSection": true,
+            "showThanksToast": true
+          },
+          "message": {
+            "archived_at": null,
+            "id": "33hjnKRKNx9ISRlixVBjhpkh28J",
+            "interacted_at": "2025-10-07T15:10:59.291Z",
+            "link_clicked_at": null,
+            "read_at": "2025-10-07T15:10:59.291Z",
+            "seen_at": "2025-10-06T18:46:03.210Z"
+          },
+          "ref": "step_1",
+          "schema_key": "nps-survey",
+          "schema_semver": "0.0.3",
+          "schema_variant_key": "default"
+        }
+      ],
+      "type": "nps-survey",
+      "updated_at": "2025-10-03T17:46:53.653663Z"
+    },
+    {
+      "__typename": "Guide",
+      "activation_url_patterns": [
+        {
+          "directive": "allow",
+          "pathname": "/dairy/*"
+        },
+        {
+          "directive": "allow",
+          "pathname": "/produce",
+          "search": "role=admin"
+        },
+        {
+          "directive": "allow",
+          "pathname": "/"
+        }
+      ],
+      "activation_url_rules": [],
+      "active": true,
+      "bypass_global_group_limit": false,
+      "channel_id": "51b92f90-1504-4fda-95c1-495a3883bc4d",
+      "dashboard_url": "https://dashboard.knock.app/~/guides/changelog-card",
+      "id": "4fc4503e-ef8b-473a-ae07-14800639d30c",
+      "inserted_at": "2025-10-07T19:41:06.215233Z",
+      "key": "changelog-card",
+      "semver": "0.0.3",
+      "steps": [
+        {
+          "content": {
+            "body": "Lorem ipsum",
+            "dismissible": false,
+            "eyebrowText": "New in Knock",
+            "image": {
+              "action": "",
+              "alt": "",
+              "url": "https://bhoite.com/img/sculptures/2024/lander-r2/lander-r2.jpg"
+            },
+            "link": "https://dashboard.knock.app/knock/development/guides/changelog-card/editor",
+            "title": "Changelog card"
+          },
+          "message": {
+            "archived_at": null,
+            "id": null,
+            "interacted_at": null,
+            "link_clicked_at": null,
+            "read_at": null,
+            "seen_at": null
+          },
+          "ref": "step_1",
+          "schema_key": "changelog-card",
+          "schema_semver": "0.0.3",
+          "schema_variant_key": "default"
+        }
+      ],
+      "type": "changelog-card",
+      "updated_at": "2025-10-07T20:39:52.410146Z"
+    }
+  ],
+  "guide_group_display_logs": {
+    "default": "2025-08-16T00:47:14.025Z"
+  },
+  "guide_groups": [
+    {
+      "__typename": "GuideGroup",
+      "display_interval": 3600,
+      "display_sequence": [
+        "nps-survey",
+        "changelog-card"
+      ],
+      "inserted_at": "2025-07-24T21:06:27.394627Z",
+      "key": "default",
+      "updated_at": "2025-10-07T20:39:52.465400Z"
+    }
+  ],
+  "ineligible_guides": [
+    {
+      "key": "onboarding-tour",
+      "message": "User has archived this guide already",
+      "reason": "marked_as_archived"
+    },
+    {
+      "key": "premium-feature",
+      "message": "User is not a member of the target audience",
+      "reason": "not_in_target_audience"
+    }
+  ]
+}
