@@ -43,7 +43,7 @@ class Client
      * @param string $token
      * @param Builder|null $httpClientBuilder
      */
-    public function __construct(string $token, Builder $httpClientBuilder = null)
+    public function __construct(string $token, ?Builder $httpClientBuilder = null)
     {
         $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
 

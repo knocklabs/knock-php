@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Feeds;
+use PHPUnit\Framework\Attributes\Test;
 
-class FeedsTest extends ApiTest
+class FeedsTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_return_feeds_for_user()
     {
         $userId = 'user_1';
@@ -17,12 +18,12 @@ class FeedsTest extends ApiTest
         $feeds->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/users/%s/feeds/%s', $userId, $feedId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $feeds->getUserFeed($userId, $feedId));
     }
 
-    /** @test */
+    #[Test]
     public function will_get_user_feed_settings()
     {
         $userId = 'user_1';
@@ -33,7 +34,7 @@ class FeedsTest extends ApiTest
         $feeds->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/users/%s/feeds/%s/settings', $userId, $feedId))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $feeds->getUserFeedSettings($userId, $feedId));
     }

@@ -3,12 +3,14 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Guides;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
-class GuidesTest extends ApiTest
+class GuidesTest extends ApiTestCase
 {
     private const USER_ID = 'dr_sattler';
 
-    /** @test */
+    #[Test]
     public function will_get_user_guides()
     {
         $channelId = '6a2a5f5c-2d2b-4f5b-9a7e-3c0e4a1b2c3d';
@@ -22,7 +24,7 @@ class GuidesTest extends ApiTest
                 sprintf('/users/%s/guides/%s', self::USER_ID, $channelId),
                 ['tenant' => 'ingen_isla_nublar', 'data' => json_encode($data)]
             )
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals(
             $expected,
@@ -30,26 +32,30 @@ class GuidesTest extends ApiTest
         );
     }
 
-    /** @test */
+    #[Test]
     public function will_encode_empty_guide_data_as_an_object_and_pass_strings_through()
     {
         $channelId = '6a2a5f5c-2d2b-4f5b-9a7e-3c0e4a1b2c3d';
         $url = sprintf('/users/%s/guides/%s', self::USER_ID, $channelId);
 
+        $sent = [];
         $guides = $this->getApiMock();
         $guides->expects($this->exactly(2))
             ->method('getRequest')
-            ->withConsecutive([$url, ['data' => '{}']], [$url, ['data' => '{"page":"home"}']])
-            ->will($this->returnValue([]));
+            ->willReturnCallback(function (string $uri, array $params) use (&$sent): array {
+                $sent[] = [$uri, $params];
+
+                return [];
+            });
 
         $guides->getUserGuides(self::USER_ID, $channelId, ['data' => []]);
         $guides->getUserGuides(self::USER_ID, $channelId, ['data' => '{"page":"home"}']);
+
+        $this->assertSame([[$url, ['data' => '{}']], [$url, ['data' => '{"page":"home"}']]], $sent);
     }
 
-    /**
-     * @test
-     * @dataProvider guideActionProvider
-     */
+    #[Test]
+    #[DataProvider('guideActionProvider')]
     public function will_perform_guide_actions(string $method, string $requestMethod, string $path)
     {
         $body = [
@@ -64,12 +70,12 @@ class GuidesTest extends ApiTest
         $guides->expects($this->once())
             ->method($requestMethod)
             ->with(sprintf($path, self::USER_ID), $body)
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $guides->$method(self::USER_ID, $body));
     }
 
-    public function guideActionProvider(): array
+    public static function guideActionProvider(): array
     {
         return [
             ['markAsSeen', 'putRequest', '/users/%s/guides/messages/seen'],

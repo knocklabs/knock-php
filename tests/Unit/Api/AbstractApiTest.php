@@ -7,6 +7,7 @@ use Http\Mock\Client as MockHttpClient;
 use Knock\KnockSdk\Api\AbstractApi;
 use Knock\KnockSdk\Client;
 use Knock\KnockSdk\HttpClient\Builder;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class AbstractApiTest extends TestCase
@@ -44,7 +45,7 @@ class AbstractApiTest extends TestCase
         };
     }
 
-    /** @test */
+    #[Test]
     public function will_send_query_params_on_post_requests()
     {
         $this->api->post('/tenants/bulk/delete', [], ['tenant_ids' => ['t1', 't2']]);
@@ -56,7 +57,7 @@ class AbstractApiTest extends TestCase
         $this->assertSame('tenant_ids%5B%5D=t1&tenant_ids%5B%5D=t2', $request->getUri()->getQuery());
     }
 
-    /** @test */
+    #[Test]
     public function will_send_query_params_and_body_on_put_requests()
     {
         $this->api->put('/providers/slack/chan/revoke_access', ['a' => 'b'], ['access_token_object' => '{}']);
@@ -68,7 +69,7 @@ class AbstractApiTest extends TestCase
         $this->assertSame('{"a":"b"}', (string) $request->getBody());
     }
 
-    /** @test */
+    #[Test]
     public function will_send_query_params_on_delete_requests()
     {
         $this->api->delete('/audiences/vip/members', ['members' => []], ['foo' => 'bar']);
@@ -79,7 +80,7 @@ class AbstractApiTest extends TestCase
         $this->assertSame('foo=bar', $request->getUri()->getQuery());
     }
 
-    /** @test */
+    #[Test]
     public function will_not_add_a_query_string_without_params()
     {
         $this->api->post('/users/bulk/delete', ['user_ids' => ['u1']]);

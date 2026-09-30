@@ -21,8 +21,8 @@ class BuilderTest extends TestCase
         parent::setUp();
 
         $this->builder = new Builder(
-            $this->createMock(ClientInterface::class),
-            $this->createMock(RequestFactoryInterface::class),
+            $this->createStub(ClientInterface::class),
+            $this->createStub(RequestFactoryInterface::class),
         );
     }
 
@@ -30,14 +30,14 @@ class BuilderTest extends TestCase
     {
         $client = $this->builder->getHttpClient();
 
-        $this->builder->addPlugin($this->createMock(Plugin::class));
+        $this->builder->addPlugin($this->createStub(Plugin::class));
 
         $this->assertNotSame($client, $this->builder->getHttpClient());
     }
 
     public function test_remove_plugin_should_invalidate_http_client(): void
     {
-        $this->builder->addPlugin($this->createMock(Plugin::class));
+        $this->builder->addPlugin($this->createStub(Plugin::class));
 
         $client = $this->builder->getHttpClient();
 

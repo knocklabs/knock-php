@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Tenants;
+use PHPUnit\Framework\Attributes\Test;
 
-class TenantsTest extends ApiTest
+class TenantsTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_list_tenants()
     {
         $expected = $this->getContent(sprintf('%s/data/responses/tenants.json', __DIR__));
@@ -15,12 +16,12 @@ class TenantsTest extends ApiTest
         $tenants->expects($this->once())
             ->method('getRequest')
             ->with('/tenants')
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $tenants->list());
     }
 
-    /** @test */
+    #[Test]
     public function will_get_tenant()
     {
         $id = 'tenant-123';
@@ -30,12 +31,12 @@ class TenantsTest extends ApiTest
         $tenants->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/tenants/%s', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $tenants->get($id));
     }
 
-    /** @test */
+    #[Test]
     public function will_set_tenant()
     {
         $id = 'tenant-123';
@@ -45,12 +46,12 @@ class TenantsTest extends ApiTest
         $tenants->expects($this->once())
             ->method('putRequest')
             ->with(sprintf('/tenants/%s', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $tenants->set($id, []));
     }
 
-    /** @test */
+    #[Test]
     public function will_delete_tenant()
     {
         $id = 'tenant-123';
@@ -60,12 +61,12 @@ class TenantsTest extends ApiTest
         $tenants->expects($this->once())
             ->method('deleteRequest')
             ->with(sprintf('/tenants/%s', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $tenants->delete($id));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_set_tenants()
     {
         $records = [['id' => 'tenant-123', 'name' => 'My Tenant']];
@@ -75,12 +76,12 @@ class TenantsTest extends ApiTest
         $tenants->expects($this->once())
             ->method('postRequest')
             ->with('/tenants/bulk/set', ['tenants' => $records])
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $tenants->bulkSet($records));
     }
 
-    /** @test */
+    #[Test]
     public function will_bulk_delete_tenants_using_query_params()
     {
         $tenantIds = ['tenant-123', 'tenant-456'];
@@ -90,7 +91,7 @@ class TenantsTest extends ApiTest
         $tenants->expects($this->once())
             ->method('postRequest')
             ->with('/tenants/bulk/delete', [], [], ['tenant_ids' => $tenantIds])
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $tenants->bulkDelete($tenantIds));
     }

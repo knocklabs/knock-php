@@ -10,7 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Client\ClientInterface;
 use Tests\TestCase;
 
-abstract class ApiTest extends TestCase
+abstract class ApiTestCase extends TestCase
 {
     /**
      * @return string
@@ -19,14 +19,7 @@ abstract class ApiTest extends TestCase
 
     protected function getApiMock(array $methods = []): MockObject
     {
-        $httpClient = $this->getMockBuilder(ClientInterface::class)
-            ->onlyMethods(['sendRequest'])
-            ->getMock();
-        $httpClient
-            ->expects($this->any())
-            ->method('sendRequest');
-
-        $builder = new Builder($httpClient);
+        $builder = new Builder($this->createStub(ClientInterface::class));
         $client = new Client('xxx', $builder);
 
         return $this->getMockBuilder($this->getApiClass())

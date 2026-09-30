@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\BulkOperations;
+use PHPUnit\Framework\Attributes\Test;
 
-class BulkOperationsTest extends ApiTest
+class BulkOperationsTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_get_bulk_operation()
     {
         $id = 'b4f6f61e-3634-4e80-af0d-9c83e9acc6f3';
@@ -16,7 +17,7 @@ class BulkOperationsTest extends ApiTest
         $bulkOperations->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/bulk_operations/%s', $id))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $bulkOperations->get($id));
     }

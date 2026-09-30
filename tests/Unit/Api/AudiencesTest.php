@@ -3,10 +3,11 @@
 namespace Tests\Unit\Api;
 
 use Knock\KnockSdk\Api\Audiences;
+use PHPUnit\Framework\Attributes\Test;
 
-class AudiencesTest extends ApiTest
+class AudiencesTest extends ApiTestCase
 {
-    /** @test */
+    #[Test]
     public function will_list_audience_members()
     {
         $key = 'vip-users';
@@ -16,12 +17,12 @@ class AudiencesTest extends ApiTest
         $audiences->expects($this->once())
             ->method('getRequest')
             ->with(sprintf('/audiences/%s/members', $key))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $this->assertEquals($expected, $audiences->listMembers($key));
     }
 
-    /** @test */
+    #[Test]
     public function will_add_audience_members()
     {
         $key = 'vip-users';
@@ -32,12 +33,12 @@ class AudiencesTest extends ApiTest
         $audiences->expects($this->once())
             ->method('postRequest')
             ->with(sprintf('/audiences/%s/members', $key), ['members' => $members], [], $params)
-            ->will($this->returnValue(''));
+            ->willReturn('');
 
         $this->assertEquals('', $audiences->addMembers($key, $members, $params));
     }
 
-    /** @test */
+    #[Test]
     public function will_remove_audience_members()
     {
         $key = 'vip-users';
@@ -47,7 +48,7 @@ class AudiencesTest extends ApiTest
         $audiences->expects($this->once())
             ->method('deleteRequest')
             ->with(sprintf('/audiences/%s/members', $key), ['members' => $members])
-            ->will($this->returnValue(''));
+            ->willReturn('');
 
         $this->assertEquals('', $audiences->removeMembers($key, $members));
     }
