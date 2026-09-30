@@ -187,7 +187,7 @@ $client->workflowRecipientRuns()->get($workflowRecipientRunId);
 
 ```php
 $client->workflows()->cancel('dinosaurs-loose', [
-    'cancellation_key' => '21e958bb-2517-40bb-aaaa-d40acc26dac3'
+    'cancellation_key' => '21e958bb-2517-40bb-aaaa-d40acc26dac3',
     // optionally you can specify recipients here
     'recipients' => ['jhammond'],
 ]);

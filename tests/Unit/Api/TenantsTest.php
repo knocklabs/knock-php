@@ -68,16 +68,16 @@ class TenantsTest extends ApiTest
     /** @test */
     public function will_bulk_set_tenants()
     {
-        $tenants = [['id' => 'tenant-123', 'name' => 'My Tenant']];
+        $records = [['id' => 'tenant-123', 'name' => 'My Tenant']];
         $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
 
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $tenants = $this->getApiMock();
+        $tenants->expects($this->once())
             ->method('postRequest')
-            ->with('/tenants/bulk/set', ['tenants' => $tenants])
+            ->with('/tenants/bulk/set', ['tenants' => $records])
             ->will($this->returnValue($expected));
 
-        $this->assertEquals($expected, $api->bulkSet($tenants));
+        $this->assertEquals($expected, $tenants->bulkSet($records));
     }
 
     /** @test */
@@ -86,13 +86,13 @@ class TenantsTest extends ApiTest
         $tenantIds = ['tenant-123', 'tenant-456'];
         $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
 
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $tenants = $this->getApiMock();
+        $tenants->expects($this->once())
             ->method('postRequest')
             ->with('/tenants/bulk/delete', [], [], ['tenant_ids' => $tenantIds])
             ->will($this->returnValue($expected));
 
-        $this->assertEquals($expected, $api->bulkDelete($tenantIds));
+        $this->assertEquals($expected, $tenants->bulkDelete($tenantIds));
     }
 
     protected function getApiClass(): string
