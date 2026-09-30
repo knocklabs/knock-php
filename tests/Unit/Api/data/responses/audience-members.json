@@ -1,0 +1,24 @@
+{
+  "entries": [
+    {
+      "__typename": "AudienceMember",
+      "added_at": "1993-06-10T14:30:00Z",
+      "tenant": "ingen_isla_nublar",
+      "user": {
+        "__typename": "User",
+        "created_at": null,
+        "email": "alan.grant@dig.site.mt",
+        "id": "dr_grant",
+        "name": "Dr. Alan Grant",
+        "updated_at": "1993-06-09T08:15:00Z"
+      },
+      "user_id": "dr_grant"
+    }
+  ],
+  "page_info": {
+    "__typename": "PageInfo",
+    "after": null,
+    "before": null,
+    "page_size": 25
+  }
+}

@@ -5,6 +5,7 @@ namespace Knock\KnockSdk;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Exception;
+use Knock\KnockSdk\Api\Audiences;
 use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
 use Knock\KnockSdk\Api\Messages;
@@ -96,6 +97,14 @@ class Client
     protected function getHttpClientBuilder(): Builder
     {
         return $this->httpClientBuilder;
+    }
+
+    /**
+     * @return Audiences
+     */
+    public function audiences(): Audiences
+    {
+        return new Audiences($this);
     }
 
     /**

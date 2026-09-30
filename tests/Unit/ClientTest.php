@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Knock\KnockSdk\Api\Audiences;
 use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
 use Knock\KnockSdk\Api\Messages;
@@ -25,6 +26,7 @@ class ClientTest extends TestCase
     public function provider(): array
     {
         return [
+            ['audiences', Audiences::class],
             ['bulkOperations', BulkOperations::class],
             ['feeds', Feeds::class],
             ['messages', Messages::class],
