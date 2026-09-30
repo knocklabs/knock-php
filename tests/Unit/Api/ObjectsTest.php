@@ -166,6 +166,24 @@ class ObjectsTest extends ApiTest
     }
 
     /** @test */
+    public function will_pass_headers_as_headers_when_getting_object_preference()
+    {
+        $collection = 'projects';
+        $objectId = 'project-1';
+        $preferenceId = 'default';
+        $headers = ['Idempotency-Key' => 'abc'];
+        $expected = $this->getContent(sprintf('%s/data/responses/preference-set.json', __DIR__));
+
+        $objects = $this->getApiMock();
+        $objects->expects($this->once())
+            ->method('getRequest')
+            ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceId), [], $headers)
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $objects->getPreference($collection, $objectId, $preferenceId, $headers));
+    }
+
+    /** @test */
     public function will_set_object_preference()
     {
         $collection = 'projects';
@@ -233,6 +251,37 @@ class ObjectsTest extends ApiTest
             ->will($this->returnValue($expected));
 
         $this->assertEquals($expected, $objects->unsetChannelData($collection, $objectId, $channelId));
+    }
+
+    /** @test */
+    public function will_bulk_delete_subscriptions()
+    {
+        $collection = 'projects';
+        $subscriptions = [['id' => 'project-1', 'recipients' => ['user_1']]];
+        $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
+
+        $objects = $this->getApiMock();
+        $objects->expects($this->once())
+            ->method('postRequest')
+            ->with(sprintf('/objects/%s/bulk/subscriptions/delete', $collection), ['subscriptions' => $subscriptions])
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $objects->bulkDeleteSubscriptions($collection, $subscriptions));
+    }
+
+    /** @test */
+    public function will_unset_object_preferences()
+    {
+        $collection = 'projects';
+        $objectId = 'project-1';
+
+        $objects = $this->getApiMock();
+        $objects->expects($this->once())
+            ->method('deleteRequest')
+            ->with(sprintf('/objects/%s/%s/preferences/%s', $collection, $objectId, 'default'))
+            ->will($this->returnValue(''));
+
+        $this->assertEquals('', $objects->unsetPreferences($collection, $objectId));
     }
 
     protected function getApiClass(): string

@@ -148,6 +148,37 @@ class MessagesTest extends ApiTest
         $this->assertEquals($expected, $messages->bulkUpdateChannelStatus($channel, $status, []));
     }
 
+    /** @test */
+    public function will_get_message_delivery_logs()
+    {
+        $id = '3961db0c-4202-475d-a5a2-32b4579425d1';
+        $params = ['page_size' => 10];
+        $expected = $this->getContent(sprintf('%s/data/responses/message-delivery-logs.json', __DIR__));
+
+        $messages = $this->getApiMock();
+        $messages->expects($this->once())
+            ->method('getRequest')
+            ->with(sprintf('/messages/%s/delivery_logs', $id), $params)
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $messages->getDeliveryLogs($id, $params));
+    }
+
+    /** @test */
+    public function will_batch_get_message_content()
+    {
+        $messageIds = ['msg_1', 'msg_2'];
+        $expected = $this->getContent(sprintf('%s/data/responses/messages-batch-content.json', __DIR__));
+
+        $messages = $this->getApiMock();
+        $messages->expects($this->once())
+            ->method('getRequest')
+            ->with('/messages/batch/content', ['message_ids' => $messageIds])
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $messages->batchGetContent($messageIds));
+    }
+
     protected function getApiClass(): string
     {
         return Messages::class;

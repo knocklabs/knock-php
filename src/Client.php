@@ -5,11 +5,16 @@ namespace Knock\KnockSdk;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Exception;
+use Knock\KnockSdk\Api\Audiences;
 use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
+use Knock\KnockSdk\Api\Guides;
 use Knock\KnockSdk\Api\Messages;
 use Knock\KnockSdk\Api\Objects;
+use Knock\KnockSdk\Api\Providers;
+use Knock\KnockSdk\Api\Tenants;
 use Knock\KnockSdk\Api\Users;
+use Knock\KnockSdk\Api\WorkflowRecipientRuns;
 use Knock\KnockSdk\Api\Workflows;
 use Knock\KnockSdk\HttpClient\Builder;
 use Knock\KnockSdk\HttpClient\Plugins\Authentication;
@@ -98,6 +103,14 @@ class Client
     }
 
     /**
+     * @return Audiences
+     */
+    public function audiences(): Audiences
+    {
+        return new Audiences($this);
+    }
+
+    /**
      * @return BulkOperations
      */
     public function bulkOperations(): BulkOperations
@@ -111,6 +124,14 @@ class Client
     public function feeds(): Feeds
     {
         return new Feeds($this);
+    }
+
+    /**
+     * @return Guides
+     */
+    public function guides(): Guides
+    {
+        return new Guides($this);
     }
 
     /**
@@ -130,11 +151,35 @@ class Client
     }
 
     /**
+     * @return Providers
+     */
+    public function providers(): Providers
+    {
+        return new Providers($this);
+    }
+
+    /**
+     * @return Tenants
+     */
+    public function tenants(): Tenants
+    {
+        return new Tenants($this);
+    }
+
+    /**
      * @return Users
      */
     public function users(): Users
     {
         return new Users($this);
+    }
+
+    /**
+     * @return WorkflowRecipientRuns
+     */
+    public function workflowRecipientRuns(): WorkflowRecipientRuns
+    {
+        return new WorkflowRecipientRuns($this);
     }
 
     /**

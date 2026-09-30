@@ -234,6 +234,50 @@ class UsersTest extends ApiTest
         $this->assertEquals($expected, $users->unsetChannelData($userId, $channelId));
     }
 
+    /** @test */
+    public function will_unset_user_preferences()
+    {
+        $id = 'user_1';
+
+        $users = $this->getApiMock();
+        $users->expects($this->once())
+            ->method('deleteRequest')
+            ->with(sprintf('/users/%s/preferences/%s', $id, 'default'))
+            ->will($this->returnValue(''));
+
+        $this->assertEquals('', $users->unsetPreferences($id));
+    }
+
+    /** @test */
+    public function will_get_preference_center_config()
+    {
+        $id = 'user_1';
+        $expected = $this->getContent(sprintf('%s/data/responses/preference-center-config.json', __DIR__));
+
+        $users = $this->getApiMock();
+        $users->expects($this->once())
+            ->method('getRequest')
+            ->with(sprintf('/users/%s/preference_center/config', $id))
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $users->getPreferenceCenterConfig($id));
+    }
+
+    /** @test */
+    public function will_generate_preference_center_signed_url()
+    {
+        $id = 'user_1';
+        $expected = $this->getContent(sprintf('%s/data/responses/preference-center-signed-url.json', __DIR__));
+
+        $users = $this->getApiMock();
+        $users->expects($this->once())
+            ->method('postRequest')
+            ->with(sprintf('/users/%s/preference_center/signed_url', $id))
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $users->generatePreferenceCenterSignedUrl($id));
+    }
+
     protected function getApiClass(): string
     {
         return Users::class;

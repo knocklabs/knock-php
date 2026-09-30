@@ -50,6 +50,19 @@ class Workflows extends AbstractApi
     }
 
     /**
+     * @param array $schedules
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function bulkCreateSchedules(array $schedules, array $headers = []): array
+    {
+        $url = $this->url('/schedules/bulk/create');
+
+        return $this->postRequest($url, ['schedules' => $schedules], $headers);
+    }
+
+    /**
      * @param array $schedule_ids
      * @param array $schedule_attrs
      * @param array $headers

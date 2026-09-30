@@ -1,0 +1,9 @@
+{
+  "ms_teams_teams": [
+    {
+      "displayName": "Engineering Team",
+      "id": "team-id-1"
+    }
+  ],
+  "skip_token": "token-for-next-page"
+}

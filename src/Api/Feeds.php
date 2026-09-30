@@ -23,4 +23,18 @@ class Feeds extends AbstractApi
 
         return $this->getRequest($url, $params, $headers);
     }
+
+    /**
+     * @param string $userId
+     * @param string $feedId
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getUserFeedSettings(string $userId, string $feedId, array $headers = []): array
+    {
+        $url = $this->url('/users/%s/feeds/%s/settings', $userId, $feedId);
+
+        return $this->getRequest($url, [], $headers);
+    }
 }

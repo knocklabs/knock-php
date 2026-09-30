@@ -68,6 +68,20 @@ class Messages extends AbstractApi
 
     /**
      * @param string $messageId
+     * @param array $params
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getDeliveryLogs(string $messageId, array $params = [], array $headers = []): array
+    {
+        $url = $this->url('/messages/%s/delivery_logs', $messageId);
+
+        return $this->getRequest($url, $params, $headers);
+    }
+
+    /**
+     * @param string $messageId
      * @param array $headers
      * @return array
      * @throws Exception
@@ -80,8 +94,21 @@ class Messages extends AbstractApi
     }
 
     /**
+     * @param array $messageIds
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function batchGetContent(array $messageIds, array $headers = []): array
+    {
+        $url = $this->url('/messages/batch/content');
+
+        return $this->getRequest($url, ['message_ids' => $messageIds], $headers);
+    }
+
+    /**
      * @param string $messageId
-     * @param string $status
+     * @param string $status One of `archived`, `read`, `seen` or `interacted`.
      * @param array $headers
      * @return array
      * @throws Exception
@@ -95,7 +122,7 @@ class Messages extends AbstractApi
 
     /**
      * @param string $messageId
-     * @param string $status
+     * @param string $status One of `archived`, `read` or `seen`.
      * @param array $headers
      * @return array
      * @throws Exception
@@ -108,7 +135,7 @@ class Messages extends AbstractApi
     }
 
     /**
-     * @param string $status
+     * @param string $status One of `archived`, `unarchived`, `read`, `unread`, `seen`, `unseen` or `interacted`.
      * @param array $messageIds
      * @param array $headers
      * @return array

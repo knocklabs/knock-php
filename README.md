@@ -74,29 +74,120 @@ $client->users()->setPreferences('jhammond', [
     'workflows' => [
         'dinosaurs-loose' => [
             'email' => false, 
-            'in_app_feed': true,
+            'in_app_feed' => true,
         ]
     ]
 ]);
 ```
 
+### Preference center
+
+```php
+$client->users()->getPreferenceCenterConfig('jhammond');
+
+$client->users()->generatePreferenceCenterSignedUrl('jhammond');
+```
+
 ### Getting and setting channel data
 
 ```php
-$knock->users()->setChannelData('jhammond', '5a88728a-3ecb-400d-ba6f-9c0956ab252f', [
+$client->users()->setChannelData('jhammond', '5a88728a-3ecb-400d-ba6f-9c0956ab252f', [
     'tokens' => [
         $apnsToken
     ],
-});
+]);
 
-$knock->users()->getChannelData('jhammond', '5a88728a-3ecb-400d-ba6f-9c0956ab252f');
+$client->users()->getChannelData('jhammond', '5a88728a-3ecb-400d-ba6f-9c0956ab252f');
+```
+
+### Tenants
+
+```php
+$client->tenants()->set('jurassic-park', [
+    'name' => 'Jurassic Park',
+]);
+
+$client->tenants()->bulkSet([
+    ['id' => 'isla-nublar', 'name' => 'Isla Nublar'],
+    ['id' => 'isla-sorna', 'name' => 'Isla Sorna'],
+]);
+
+$client->tenants()->bulkDelete(['isla-nublar', 'isla-sorna']);
+```
+
+### Audiences
+
+```php
+$client->audiences()->addMembers('park-staff', [
+    ['user' => ['id' => 'jhammond'], 'tenant' => 'jurassic-park'],
+], ['create_audience' => true]);
+
+$client->audiences()->listMembers('park-staff');
+
+$client->audiences()->removeMembers('park-staff', [
+    ['user' => ['id' => 'jhammond'], 'tenant' => 'jurassic-park'],
+]);
+```
+
+### Bulk creating schedules
+
+```php
+$client->workflows()->bulkCreateSchedules([
+    [
+        'workflow' => 'daily-digest',
+        'recipient' => 'jhammond',
+        'repeats' => [['frequency' => 'daily', 'hours' => 9]],
+    ],
+]);
+```
+
+### Guides
+
+```php
+$client->guides()->getUserGuides('jhammond', $guideChannelId, [
+    'tenant' => 'jurassic-park',
+    'data' => ['page' => 'visitor-center'],
+]);
+
+$client->guides()->markAsSeen('jhammond', [
+    'channel_id' => $guideChannelId,
+    'guide_id' => $guideId,
+    'guide_key' => 'park-tour',
+    'guide_step_ref' => 'welcome',
+    'content' => ['title' => 'Welcome to Jurassic Park'],
+]);
+```
+
+### Slack and Microsoft Teams providers
+
+```php
+$client->providers()->slackListChannels($slackChannelId, [
+    'access_token_object' => ['collection' => 'parks', 'object_id' => 'jurassic-park'],
+    'query_options' => ['limit' => 100],
+]);
+
+$client->providers()->msTeamsListTeams($msTeamsChannelId, [
+    'ms_teams_tenant_object' => ['collection' => 'parks', 'object_id' => 'jurassic-park'],
+]);
+```
+
+### Workflow recipient runs
+
+```php
+$client->workflowRecipientRuns()->list([
+    'workflow' => 'dinosaurs-loose',
+    'status' => ['completed'],
+    'has_errors' => true,
+]);
+
+$client->workflowRecipientRuns()->get($workflowRecipientRunId);
 ```
 
 ### Canceling workflows
 
 ```php
 $client->workflows()->cancel('dinosaurs-loose', [
-    'cancellation_key' => '21e958bb-2517-40bb-aaaa-d40acc26dac3'
+    'cancellation_key' => '21e958bb-2517-40bb-aaaa-d40acc26dac3',
     // optionally you can specify recipients here
     'recipients' => ['jhammond'],
 ]);

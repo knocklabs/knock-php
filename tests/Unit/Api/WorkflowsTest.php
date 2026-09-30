@@ -52,6 +52,25 @@ class WorkflowsTest extends ApiTest
         $this->assertEquals($expected, $workflows->cancel($key, []));
     }
 
+    /** @test */
+    public function will_bulk_create_schedules()
+    {
+        $schedules = [[
+            'workflow' => 'comment-created',
+            'recipient' => 'dnedry',
+            'repeats' => [['frequency' => 'daily']],
+        ]];
+        $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
+
+        $workflows = $this->getApiMock();
+        $workflows->expects($this->once())
+            ->method('postRequest')
+            ->with('/schedules/bulk/create', ['schedules' => $schedules])
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $workflows->bulkCreateSchedules($schedules));
+    }
+
     protected function getApiClass(): string
     {
         return Workflows::class;

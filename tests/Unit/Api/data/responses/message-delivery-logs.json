@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "__typename": "MessageDeliveryLog",
+      "environment_id": "123e4567-e89b-12d3-a456-426614174000",
+      "id": "2FVHPWxRqNuXQ9krvNP5A6Z4qXe",
+      "inserted_at": "2021-01-01T00:00:00Z",
+      "request": {
+        "body": {
+          "html_content": "<html></html>"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "host": "localhost",
+        "method": "GET",
+        "path": "/",
+        "query": "?foo=bar"
+      },
+      "response": {
+        "body": {
+          "success": true
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "service_name": "Postmark"
+    }
+  ],
+  "page_info": {
+    "__typename": "PageInfo",
+    "after": null,
+    "before": null,
+    "page_size": 25
+  }
+}

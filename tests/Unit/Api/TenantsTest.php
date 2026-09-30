@@ -65,6 +65,36 @@ class TenantsTest extends ApiTest
         $this->assertEquals($expected, $tenants->delete($id));
     }
 
+    /** @test */
+    public function will_bulk_set_tenants()
+    {
+        $records = [['id' => 'tenant-123', 'name' => 'My Tenant']];
+        $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
+
+        $tenants = $this->getApiMock();
+        $tenants->expects($this->once())
+            ->method('postRequest')
+            ->with('/tenants/bulk/set', ['tenants' => $records])
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $tenants->bulkSet($records));
+    }
+
+    /** @test */
+    public function will_bulk_delete_tenants_using_query_params()
+    {
+        $tenantIds = ['tenant-123', 'tenant-456'];
+        $expected = $this->getContent(sprintf('%s/data/responses/bulk-operation.json', __DIR__));
+
+        $tenants = $this->getApiMock();
+        $tenants->expects($this->once())
+            ->method('postRequest')
+            ->with('/tenants/bulk/delete', [], [], ['tenant_ids' => $tenantIds])
+            ->will($this->returnValue($expected));
+
+        $this->assertEquals($expected, $tenants->bulkDelete($tenantIds));
+    }
+
     protected function getApiClass(): string
     {
         return Tenants::class;

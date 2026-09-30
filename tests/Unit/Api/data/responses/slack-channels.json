@@ -1,0 +1,12 @@
+{
+  "next_cursor": null,
+  "slack_channels": [
+    {
+      "context_team_id": "T01234567890",
+      "id": "C01234567890",
+      "is_im": false,
+      "is_private": false,
+      "name": "general"
+    }
+  ]
+}
