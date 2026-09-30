@@ -195,6 +195,20 @@ class Users extends AbstractApi
     }
 
     /**
+     * @param string $userId
+     * @param string $preferenceSetId
+     * @param array $headers
+     * @return array|string
+     * @throws Exception
+     */
+    public function deletePreferences(string $userId, string $preferenceSetId = 'default', array $headers = [])
+    {
+        $url = $this->url('/users/%s/preferences/%s', $userId, $preferenceSetId);
+
+        return $this->deleteRequest($url, [], $headers);
+    }
+
+    /**
      * @param array $body
      * @param array $headers
      * @return array
@@ -205,6 +219,32 @@ class Users extends AbstractApi
         $url = $this->url('/users/bulk/preferences');
 
         return $this->postRequest($url, $body, $headers);
+    }
+
+    /**
+     * @param string $userId
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function getPreferenceCenterConfig(string $userId, array $headers = []): array
+    {
+        $url = $this->url('/users/%s/preference_center/config', $userId);
+
+        return $this->getRequest($url, [], $headers);
+    }
+
+    /**
+     * @param string $userId
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function generatePreferenceCenterSignedUrl(string $userId, array $headers = []): array
+    {
+        $url = $this->url('/users/%s/preference_center/signed_url', $userId);
+
+        return $this->postRequest($url, [], $headers);
     }
 
     /**

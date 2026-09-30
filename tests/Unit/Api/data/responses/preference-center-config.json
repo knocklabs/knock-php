@@ -1,0 +1,41 @@
+{
+  "account_name": "Acme Inc.",
+  "branding": {
+    "dark": {
+      "icon_url": "https://example.com/icon-dark.png",
+      "logo_url": "https://example.com/logo-dark.png",
+      "primary_color": "#C02727",
+      "primary_color_contrast": "#11E2EC"
+    },
+    "icon_url": "https://example.com/icon.png",
+    "logo_url": "https://example.com/logo.png",
+    "primary_color": "#0EA5E9",
+    "primary_color_contrast": "#0F172A"
+  },
+  "config": {
+    "body": "Choose which notifications you want to receive.",
+    "rows": [
+      {
+        "channel_types": [],
+        "description": "Opt out of receiving comment and reply notifications",
+        "identifier": "comments",
+        "name": "Comments and replies",
+        "type": "category"
+      },
+      {
+        "channel_types": [
+          "email",
+          "sms"
+        ],
+        "description": "Receive notifications from the following channel types",
+        "name": "Channel Types",
+        "type": "channel_types"
+      }
+    ],
+    "show_account_name": true,
+    "title": "Notification preferences"
+  },
+  "enabled": true,
+  "knock_branding_required": false,
+  "user_email": "user@example.com"
+}
