@@ -7,6 +7,7 @@ use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
 use Knock\KnockSdk\Api\Messages;
 use Knock\KnockSdk\Api\Objects;
+use Knock\KnockSdk\Api\Providers;
 use Knock\KnockSdk\Api\Tenants;
 use Knock\KnockSdk\Api\Users;
 use Knock\KnockSdk\Api\Workflows;
@@ -31,6 +32,7 @@ class ClientTest extends TestCase
             ['feeds', Feeds::class],
             ['messages', Messages::class],
             ['objects', Objects::class],
+            ['providers', Providers::class],
             ['tenants', Tenants::class],
             ['users', Users::class],
             ['workflows', Workflows::class],

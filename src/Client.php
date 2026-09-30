@@ -10,6 +10,7 @@ use Knock\KnockSdk\Api\BulkOperations;
 use Knock\KnockSdk\Api\Feeds;
 use Knock\KnockSdk\Api\Messages;
 use Knock\KnockSdk\Api\Objects;
+use Knock\KnockSdk\Api\Providers;
 use Knock\KnockSdk\Api\Tenants;
 use Knock\KnockSdk\Api\Users;
 use Knock\KnockSdk\Api\Workflows;
@@ -137,6 +138,14 @@ class Client
     public function objects(): Objects
     {
         return new Objects($this);
+    }
+
+    /**
+     * @return Providers
+     */
+    public function providers(): Providers
+    {
+        return new Providers($this);
     }
 
     /**
