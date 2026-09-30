@@ -163,7 +163,7 @@ class Objects extends AbstractApi
     {
         $url = $this->url('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceId);
 
-        return $this->getRequest($url, $headers);
+        return $this->getRequest($url, [], $headers);
     }
 
     /**
