@@ -139,6 +139,20 @@ class Objects extends AbstractApi
 
     /**
      * @param string $collection
+     * @param array $subscriptions
+     * @param array $headers
+     * @return array
+     * @throws Exception
+     */
+    public function bulkDeleteSubscriptions(string $collection, array $subscriptions, array $headers = []): array
+    {
+        $url = $this->url('/objects/%s/bulk/subscriptions/delete', $collection);
+
+        return $this->postRequest($url, ['subscriptions' => $subscriptions], $headers);
+    }
+
+    /**
+     * @param string $collection
      * @param string $objectId
      * @param array $headers
      * @return array
@@ -185,6 +199,25 @@ class Objects extends AbstractApi
         $url = $this->url('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceSetId);
 
         return $this->putRequest($url, $body, $headers);
+    }
+
+    /**
+     * @param string $collection
+     * @param string $objectId
+     * @param string $preferenceSetId
+     * @param array $headers
+     * @return array|string
+     * @throws Exception
+     */
+    public function deletePreferences(
+        string $collection,
+        string $objectId,
+        string $preferenceSetId = 'default',
+        array $headers = []
+    ) {
+        $url = $this->url('/objects/%s/%s/preferences/%s', $collection, $objectId, $preferenceSetId);
+
+        return $this->deleteRequest($url, [], $headers);
     }
 
     /**
