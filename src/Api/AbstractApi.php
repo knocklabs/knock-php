@@ -68,10 +68,11 @@ abstract class AbstractApi
      * @param string $uri
      * @param array<string,mixed> $body
      * @param array<string,string> $headers
+     * @param array<string,mixed> $params
      * @return array|string
      * @throws Exception
      */
-    protected function postRequest(string $uri, array $body = [], array $headers = [])
+    protected function postRequest(string $uri, array $body = [], array $headers = [], array $params = [])
     {
         $body = self::prepareJsonBody($body);
 
@@ -79,7 +80,7 @@ abstract class AbstractApi
             $headers = self::addJsonContentType($headers);
         }
 
-        $response = $this->client->getHttpClient()->post($this->prepareUri($uri), $headers, $body);
+        $response = $this->client->getHttpClient()->post($this->prepareUri($uri, $params), $headers, $body);
 
         return ResponseMediator::getContent($response);
     }
@@ -88,10 +89,11 @@ abstract class AbstractApi
      * @param string $uri
      * @param array<string,mixed> $body
      * @param array<string,string> $headers
+     * @param array<string,mixed> $params
      * @return array|string
      * @throws Exception
      */
-    protected function putRequest(string $uri, array $body = [], array $headers = [])
+    protected function putRequest(string $uri, array $body = [], array $headers = [], array $params = [])
     {
         $body = self::prepareJsonBody($body);
 
@@ -99,7 +101,7 @@ abstract class AbstractApi
             $headers = self::addJsonContentType($headers);
         }
 
-        $response = $this->client->getHttpClient()->put($this->prepareUri($uri), $headers, $body ?? '');
+        $response = $this->client->getHttpClient()->put($this->prepareUri($uri, $params), $headers, $body ?? '');
 
         return ResponseMediator::getContent($response);
     }
@@ -108,10 +110,11 @@ abstract class AbstractApi
      * @param string $uri
      * @param array<string,mixed> $body
      * @param array<string,string> $headers
+     * @param array<string,mixed> $params
      * @return array|string
      * @throws Exception
      */
-    protected function deleteRequest(string $uri, array $body = [], array $headers = [])
+    protected function deleteRequest(string $uri, array $body = [], array $headers = [], array $params = [])
     {
         $body = self::prepareJsonBody($body);
 
@@ -119,7 +122,7 @@ abstract class AbstractApi
             $headers = self::addJsonContentType($headers);
         }
 
-        $response = $this->client->getHttpClient()->delete($this->prepareUri($uri), $headers, $body ?? '');
+        $response = $this->client->getHttpClient()->delete($this->prepareUri($uri, $params), $headers, $body ?? '');
 
         return ResponseMediator::getContent($response);
     }

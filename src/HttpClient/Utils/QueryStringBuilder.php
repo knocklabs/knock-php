@@ -2,7 +2,11 @@
 
 namespace Knock\KnockSdk\HttpClient\Utils;
 
+use function array_merge;
+use function array_values;
 use function count;
+use function is_array;
+use function is_bool;
 
 use League\Uri\Components\Query;
 
@@ -13,15 +17,67 @@ final class QueryStringBuilder
     /**
      * Encode a query as a query string according to RFC 3986.
      *
+     * List arrays are encoded as `key[]=value` and associative arrays as `key[child]=value`.
+     *
      * @param array $query
      * @return string
      */
     public static function build(array $query): string
     {
-        if (0 === count($query)) {
+        $pairs = self::toPairs($query);
+
+        if (0 === count($pairs)) {
             return '';
         }
 
-        return sprintf('?%s', Query::createFromParams($query));
+        return sprintf('?%s', Query::fromPairs($pairs));
+    }
+
+    /**
+     * @param array $params
+     * @param string|null $prefix
+     * @return array<int, array{0: string, 1: string}>
+     */
+    private static function toPairs(array $params, ?string $prefix = null): array
+    {
+        $pairs = [];
+        $isList = array_values($params) === $params;
+
+        foreach ($params as $key => $value) {
+            if (null === $value) {
+                continue;
+            }
+
+            if (null === $prefix) {
+                $name = (string) $key;
+            } elseif ($isList) {
+                $name = sprintf('%s[]', $prefix);
+            } else {
+                $name = sprintf('%s[%s]', $prefix, $key);
+            }
+
+            if (is_array($value)) {
+                $pairs = array_merge($pairs, self::toPairs($value, $name));
+
+                continue;
+            }
+
+            $pairs[] = [$name, self::toString($value)];
+        }
+
+        return $pairs;
+    }
+
+    /**
+     * @param mixed $value
+     * @return string
+     */
+    private static function toString($value): string
+    {
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+
+        return (string) $value;
     }
 }
